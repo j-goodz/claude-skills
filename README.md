@@ -24,6 +24,7 @@ ln -sf ~/claude-skills/skills/*.md ~/.claude/commands/
 |-------|-------------|
 | `/roundtable` | Run a multi-model deliberation on any question |
 | `/validate-models` | Check all roundtable model IDs against live provider APIs |
+| `/auto-compact` | Compact context after building a plan, then re-read the plan to keep it salient |
 
 ## Adding a Skill
 
