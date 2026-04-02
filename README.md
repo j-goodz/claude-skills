@@ -73,6 +73,7 @@ dotup-all        # Full update: git pull + apply everything
 | `/roundtable` | Run a multi-model deliberation on any question | roundtable, provider API keys |
 | `/validate-models` | Check all roundtable model IDs against live provider APIs | roundtable, provider API keys |
 | `/auto-compact` | Compact context after plan creation, then re-read the plan | None |
+| `/delegate` | Delegate coding tasks to cheaper models (saves Opus usage limits) | roundtable, provider API keys |
 
 ## Adding a Skill
 

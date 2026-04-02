@@ -88,6 +88,46 @@ else:
                 print(f'  {body[:300]}')
     except Exception as e:
         print(f'  ERROR: {e}')
+
+print()
+
+# ── Roundtable API Costs ────────────────────────────────────
+print('=== Roundtable Delegated Work ===')
+try:
+    rt_reliability = os.path.expanduser('~/.local/share/roundtable/model_reliability.json')
+    if os.path.isfile(rt_reliability):
+        with open(rt_reliability) as f:
+            rel_data = json.load(f)
+        total_calls = 0
+        for model, events in rel_data.items():
+            if isinstance(events, list):
+                total_calls += len(events)
+        print(f'  Models tracked: {len(rel_data)}')
+        print(f'  Total delegated calls: {total_calls}')
+    else:
+        print('  No reliability data yet (run roundtable first)')
+
+    # Check model_profiles.json for learned data
+    profiles = [os.path.expanduser(p) for p in [
+        '~/roundtable/model_profiles.json',
+        'model_profiles.json',
+    ]]
+    for p in profiles:
+        if os.path.isfile(p):
+            with open(p) as f:
+                learned = json.load(f)
+            if learned:
+                print(f'  Learned profiles: {len(learned)} models with adjustments')
+            break
+except Exception as e:
+    print(f'  ERROR: {e}')
+
+print()
+print('=== Cost Saving Tips ===')
+print('  Use /delegate for code generation (DeepSeek V3: ~\$0.001/call)')
+print('  Use /roundtable for research/analysis (~\$0.02-0.04/deliberation)')
+print('  Save Opus tokens for: orchestration, complex reasoning, multi-file edits')
+print('  Run /usage to see live Claude Code limit status')
 "
 ```
 
