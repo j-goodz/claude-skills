@@ -72,7 +72,8 @@ dotup-all        # Full update: git pull + apply everything
 | `/check-usage` | Check Claude Code plan/limits and Gemini API status | Python 3 (stdlib only) |
 | `/roundtable` | Run a multi-model deliberation on any question | roundtable, provider API keys |
 | `/validate-models` | Check all roundtable model IDs against live provider APIs | roundtable, provider API keys |
-| `/auto-compact` | Compact context after plan creation, then re-read the plan | None |
+| `/smart-compact` | Save context to disk, compact, restore — no amnesia | None |
+| `/auto-compact` | *(deprecated — use `/smart-compact`)* | None |
 | `/delegate` | Delegate coding tasks to cheaper models (saves Opus usage limits) | roundtable, provider API keys |
 
 ## Adding a Skill
