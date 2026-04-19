@@ -74,6 +74,7 @@ dotup-all        # Full update: git pull + apply everything
 | `/validate-models` | Check all roundtable model IDs against live provider APIs | roundtable, provider API keys |
 | `/smart-compact` | Save context to disk, compact, restore — no amnesia | None |
 | `/delegate` | Delegate coding tasks to cheaper models (saves Opus usage limits) | roundtable, provider API keys |
+| `/ideate` | Scan recent work across projects, surface novel ideas, draft one-pagers | roundtable, ~/papers-draft/ |
 
 ## Adding a Skill
 
