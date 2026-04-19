@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Pre-push hook: auto-sync skills to chezmoi before pushing to GitHub.
+# Ensures any new/changed skill propagates to all platforms via dotup.
+#
+# Install with: ln -sf ../../hooks/pre-push .git/hooks/pre-push
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+"$REPO_ROOT/sync-to-chezmoi.sh"
+
+# If sync made changes to chezmoi, warn the user
+CHEZMOI_DIR="$HOME/.local/share/chezmoi"
+if [ -d "$CHEZMOI_DIR/.git" ]; then
+    if ! git -C "$CHEZMOI_DIR" diff --quiet dot_claude/commands/ 2>/dev/null; then
+        echo ""
+        echo "WARNING: chezmoi has uncommitted changes in dot_claude/commands/."
+        echo "Commit and push them so other machines receive the skills update:"
+        echo "  cd ~/.local/share/chezmoi"
+        echo "  git add dot_claude/commands/ && git commit -m 'Sync skills from claude-skills'"
+        echo "  git push"
+        echo ""
+    fi
+fi

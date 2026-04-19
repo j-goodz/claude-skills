@@ -83,10 +83,20 @@ Create `skills/my-skill.md` with:
 2. `## Instructions` section with step-by-step actions
 3. `## Notes` section with context and caveats
 
-Then symlink it:
+Then run the sync so every platform gets it via `dotup`:
 ```bash
-ln -sf ~/claude-skills/skills/my-skill.md ~/.claude/commands/
+./sync-to-chezmoi.sh                # copies skills/*.md → chezmoi dot_claude/commands/
+git add skills/ && git commit && git push   # pre-push hook re-runs sync for safety
+
+# Commit chezmoi separately (sync-to-chezmoi only stages files locally)
+cd ~/.local/share/chezmoi
+git add dot_claude/commands/ && git commit -m "Sync skills from claude-skills"
+git push
 ```
+
+On other machines: `dotup` pulls chezmoi and deploys the skill to `~/.claude/commands/`. No manual symlinking needed after the initial setup.
+
+**Local dev (VPS only):** The live `~/.claude/commands/<skill>.md` can be a symlink into `~/claude-skills/skills/` for instant iteration. That's optional — the source of truth for cross-machine distribution is the chezmoi copy.
 
 ## Environment-specific notes
 
